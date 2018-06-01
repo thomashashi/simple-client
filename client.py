@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 import requests
 import upstream
 
@@ -20,26 +21,30 @@ def get_listings():
 def healthz():
     return 'OK'
 
-@app.route('/')
-def index():
-    return """
-    <html>
+template = """<html>
       <body>
         <h1>Welcome!</h2>
         <h3>Products:</h3>
         <ul>
-            {% for prod in get_products() %}
+            {% for prod in prod_list %}
               <li>prod</li>
             {% endfor %}
         </ul>
         <h3>Listings:</h3>
         <ul>
-            {% for listing in get_listings() %}
+            {% for listing in listings_list %}
               <li>prod</li>
             {% endfor %}
         </ul>
       </body>
-    </html>"""
+    </html>
+"""
+
+@app.route('/')
+def index():
+    products = get_products()
+    listings = get_listings()
+    return render_template(template, prod_list=products, listings_list=listings)
 
 if __name__ == '__main__':
       app.run(host='0.0.0.0', port=80)
