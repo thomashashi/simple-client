@@ -6,13 +6,13 @@ import upstream
 app = Flask(__name__)
 
 def get_products():
-    products = requests.get(upstream.get_product_addr)
+    products = requests.get(upstream.get_product_addr())
     print(products.status_code)
     print(products.text)
     return products.json()
 
 def get_listings():
-    listings = requests.get(upstream.get_product_addr)
+    listings = requests.get(upstream.get_product_addr())
     print(listings.status_code)
     print(listings.text)
     return listings.json()
