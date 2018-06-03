@@ -12,7 +12,7 @@ def get_products():
     return products.json()
 
 def get_listings():
-    listings = requests.get(upstream.get_product_addr())
+    listings = requests.get(upstream.get_listing_addr())
     print(listings.status_code)
     print(listings.text)
     return listings.json()
