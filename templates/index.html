@@ -1,17 +1,28 @@
 <html>
     <body>
         <h1>Welcome!</h2>
+            <p>
+                This is a simple client that calls two different APIs independently.  The connections are facilitated and secured by Consul Connect.
+            </p>
         <h3>Products:</h3>
         <ul>
-            {% for prod in prod_list %}
-                <li>{{ prod }}</li>
-            {% endfor %}
+            {% if prod_list %}
+                {% for prod in prod_list %}
+                    <li>{{ prod }}</li>
+                {% endfor %}
+            {% else %}
+                <font color="red">There was an error calling Product API...</font>
+            {% endif %} 
         </ul>
         <h3>Listings:</h3>
         <ul>
-            {% for listing in listings_list %}
-                <li> {{ listing }}</li>
-            {% endfor %}
+            {% if listings_list %}
+                {% for listing in listings_list %}
+                    <li> {{ listing }}</li>
+                {% endfor %}
+            {% else %}
+                <font color="red">There was a problem calling the Listing API...</font>
+            {% endif %}
         </ul>
     </body>
 </html>
