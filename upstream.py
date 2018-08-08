@@ -1,7 +1,7 @@
 import os
 
 def get_listing_addr():
-    return os.environ.get('LISTING_URL', 'http://localhost:10002/listing')
+    return os.environ.get('LISTING_URI', 'http://localhost:10002/listing')
 
 
 def get_product_addr():
