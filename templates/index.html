@@ -2,7 +2,7 @@
     <body>
         <h1>Welcome!</h2>
             <p>
-                This is a simple client that calls two different APIs independently.  The connections are facilitated and secured by Consul Connect.
+	    This is a simple client that calls two different APIs independently.  The connections are facilitated by Consul{% if is_connect == 1 %} and secured with Consul Connect{% endif %}
             </p>
         <h3>Products:</h3>
         <ul>
