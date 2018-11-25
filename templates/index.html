@@ -1,52 +1,74 @@
 <html>
-    <style>
-	table, th, td {
-		border: 1px solid black;
-	}
-    </style>
     <body>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <h1>Welcome!</h2>
             <p>
-	    This is a simple client that calls two different APIs independently.  The connections are facilitated by Consul{% if is_connect == "1" %} and secured with Consul Connect{% endif %}
+            This is a simple client that calls two different APIs independently.  The connections are facilitated by Consul
             </p>
         <h3>Products:</h3>
+
+	    {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %}
+
             {% if prod_list %}
-		<table>
-		    <tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Cost</th>
-		    </tr>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Cost</th>
+                    </tr>
                 {% for prod in prod_list.res %}
-		    <tr>
-			<td>{{ prod.inv_id }}</td>
-			<td>{{ prod.name }}</td>
-			<td>{{ prod.cost }}</td>
-		    </tr>
+                    <tr>
+                        <td>{{ prod.inv_id }}</td>
+                        <td>{{ prod.name }}</td>
+                        <td>{{ prod.cost }}</td>
+                    </tr>
                 {% endfor %}
-		</table>
-		Result from instance {{ prod_list.instance_id }}, config is {{ prod_list.conf }}
+                </table>
+
+        <h4>Instance</h4>
+                Result from instance {{ prod_list.instance_id }}
+
+        <h4>Configuration</h4>
+                <table>
+                        <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                        </tr>
+                        {% for key, value in prod_list.conf.items() %}
+                                <tr>
+                                        <td>{{ key }}</td>
+                                        <td>{{ value }}</td>
+                                </tr>
+                        {% endfor %}
+                </table>
             {% else %}
                 <font color="red">There was an error calling Product API...</font>
-            {% endif %} 
+            {% endif %}
+        <hr> 
         <h3>Listings:</h3>
             {% if listings_list %}
-		<table>
-		    <tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Reserve</th>
-			<th>Current Bid</th>
-		    </tr>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Reserve</th>
+                        <th>Current Bid</th>
+                    </tr>
                 {% for listing in listings_list %}
-		    <tr>
-			<td>{{ listing.listing_id }}</td>
-			<td>{{ listing.name }}</td>
-			<td>{{ listing.reserve }}</td>
-			<td>{{ listing.current_bid }}</td>
-		    </tr>
+                    <tr>
+                        <td>{{ listing.listing_id }}</td>
+                        <td>{{ listing.name }}</td>
+                        <td>{{ listing.reserve }}</td>
+                        <td>{{ listing.current_bid }}</td>
+                    </tr>
                 {% endfor %}
-		</table>
+                </table>
             {% else %}
                 <font color="red">There was a problem calling the Listing API...</font>
             {% endif %}
