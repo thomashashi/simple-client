@@ -1,5 +1,5 @@
 <html>
-    <body>
+    <head>
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -7,13 +7,19 @@
         </style>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <h1>Welcome!</h2>
-            <p>
-            This is a simple client that calls two different APIs independently.  The connections are facilitated by Consul
-            </p>
+      
+        <h1 style="padding-bottom: 10px;">Dual API Web Interface</h1>
+      
+    </head>
+      
+    <body style="background-color: #e0e0e0; padding: 30 40 40 40px;">
+        <p>
+        This is a simple client that calls two different API services using connections facilitated by Consul
+        </p>
+
         <h3>Products:</h3>
 
-	    {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %}
+        {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %}
 
             {% if prod_list %}
                 <table>
@@ -31,10 +37,10 @@
                 {% endfor %}
                 </table>
 
-        <h4>Instance</h4>
-                Result from instance {{ prod_list.instance_id }}
+        <h4 style="padding-top: 15px;">Instance</h4>
+                Result from instance <font color="blue"></font>{{ prod_list.instance_id }}</font>
 
-        <h4>Configuration</h4>
+        <h4 style="padding-top: 10px;">Configuration</h4>
                 <table>
                         <tr>
                                 <th>Key</th>
@@ -51,6 +57,7 @@
                 <font color="red">There was an error calling Product API...</font>
             {% endif %}
         <hr> 
+
         <h3>Listings:</h3>
             {% if listings_list %}
                 <table>
