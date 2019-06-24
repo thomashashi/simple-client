@@ -3,6 +3,7 @@
         <style>
             table, th, td {
                 border: 1px solid black;
+                padding: 1 5 1 5px;
             }
         </style>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -12,12 +13,35 @@
       
     </head>
       
-    <body style="background-color: #e0e0e0; padding: 30 40 40 40px;">
+    <body style="background-color: #e0e0e0; padding: 20 40 40 40px;">
         <p>
         This is a simple client that calls two different API services using connections facilitated by Consul
         </p>
 
-        <h3>Products:</h3>
+        <h4>Listings:</h3>
+        
+            {% if listings_list %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Reserve</th>
+                        <th>Current Bid</th>
+                    </tr>
+                {% for listing in listings_list %}
+                    <tr>
+                        <td>{{ listing.listing_id }}</td>
+                        <td>{{ listing.name }}</td>
+                        <td>{{ listing.reserve }}</td>
+                        <td>{{ listing.current_bid }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+                {% else %}
+                    <font color="red">There was a problem calling the Listing API...</font>
+            {% endif %}
+
+        <h4 style="padding-top: 20px;">Products:</h3>
 
         {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %}
 
@@ -37,10 +61,10 @@
                 {% endfor %}
                 </table>
 
-        <h4 style="padding-top: 15px;">Instance</h4>
-                Result from instance <font color="blue"></font>{{ prod_list.instance_id }}</font>
+        <h5 style="padding-top: 10px;">Instance</h4>
+                Result from instance <font color="blue">{{ prod_list.instance_id }}</font>
 
-        <h4 style="padding-top: 10px;">Configuration</h4>
+        <h5 style="padding-top: 5px;">Configuration</h4>
                 <table>
                         <tr>
                                 <th>Key</th>
@@ -56,29 +80,6 @@
             {% else %}
                 <font color="red">There was an error calling Product API...</font>
             {% endif %}
-        <hr> 
 
-        <h3>Listings:</h3>
-            {% if listings_list %}
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Reserve</th>
-                        <th>Current Bid</th>
-                    </tr>
-                {% for listing in listings_list %}
-                    <tr>
-                        <td>{{ listing.listing_id }}</td>
-                        <td>{{ listing.name }}</td>
-                        <td>{{ listing.reserve }}</td>
-                        <td>{{ listing.current_bid }}</td>
-                    </tr>
-                {% endfor %}
-                </table>
-            {% else %}
-                <font color="red">There was a problem calling the Listing API...</font>
-            {% endif %}
-        </ul>
     </body>
 </html>
