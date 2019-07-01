@@ -3,7 +3,7 @@
   color: #eeeeee;
   text-align: center;
   border-bottom: 2px solid black;
-  padding: 20px 30px 10px 40px;
+  padding: 20px 30px 0px 40px;
   /* margin-top: -10px; */
   margin-bottom: -10px;
   margin-left: -10px;
@@ -21,7 +21,7 @@ table,
 th,
 td {
   border: 1px solid black;
-  padding: 1 5 1 5px;
+  padding: 1 10 1 10px;
 }
 
 #content {
