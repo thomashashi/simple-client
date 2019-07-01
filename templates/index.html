@@ -1,6 +1,9 @@
 <html>
 
 <head>
+  <meta charset="utf-8">
+  <title>Consul Connect Demo</title>
+
   <style>
     table,
     th,
@@ -15,19 +18,21 @@
           integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
   </script>
 
-  <h1 style="padding-bottom: 10px;">Consul Connect Demo - Web Client</h1>
+  <div class="main-title">
+    <h1 style="padding-bottom: 10px;">Consul Connect Demo - Web Client</h1>
+  </div>
 
 </head>
 
 <body style="background-color: #e0e0e0; padding: 20 40 40 40px;">
   <p>
-    Demo web client that calls two different API services using connections facilitated by Consul
+    Example web client calling two different API services using connections facilitated by Consul
   </p>
 
   <table style="width:100%; margin-top: 30px;">
     <tr>
 
-      <td style="width:50%; padding:20px;">
+      <td style="width:50%; padding:20px; vertical-align: text-top;">
         <h4>Listing API</h3>
 
           {% if listings_list %}
@@ -53,7 +58,7 @@
 
       </td>
 
-      <td style="width:50%; padding:20px;">
+      <td style="width:50%; padding:20px; vertical-align: text-top;">
         <h4>Product APIs:</h3>
 
           {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %}
