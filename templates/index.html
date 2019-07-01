@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
       
-        <h1 style="padding-bottom: 10px;">Dual API Web Interface</h1>
+        <h1 style="padding-bottom: 10px;">Consul Connect Demo - Web Client</h1>
       
     </head>
       
@@ -18,7 +18,9 @@
         This is a simple client that calls two different API services using connections facilitated by Consul
         </p>
 
-        <h4>Listings:</h3>
+        <table style="width:100%; margin-top: 30px;"><tr>
+
+        <td style="width:50%; padding:20px;"><h4>Listing API</h3>
         
             {% if listings_list %}
                 <table>
@@ -41,7 +43,9 @@
                     <font color="red">There was a problem calling the Listing API...</font>
             {% endif %}
 
-        <h4 style="padding-top: 20px;">Products:</h3>
+        </td>
+
+        <td style="width:50%; padding:20px;"><h4>Product APIs:</h3>
 
         {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %}
 
@@ -80,6 +84,8 @@
             {% else %}
                 <font color="red">There was an error calling Product API...</font>
             {% endif %}
+        </td>
 
+        </tr></table>
     </body>
 </html>
