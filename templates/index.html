@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Consul Connect Demo</title>
-  
+
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -29,7 +29,7 @@
       <td class="api-column">
         <h3>Listing API</h3>
 
-          <!-- {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %} -->
+        <!-- {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %} -->
 
           {% if listings_list %}
           <table>
@@ -59,7 +59,7 @@
       <td class="api-column">
         <h3>Product API</h3>
 
-          <!-- {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %} -->
+        <!-- {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %} -->
 
           {% if prod_list %}
           <table>
@@ -77,26 +77,8 @@
             {% endfor %}
           </table>
 
-        <h4 class="spaced-item">Responding Instance</h4>
-        <!-- Result from instance <font color="blue">{{ prod_list.instance_id }}</font> -->
-          <table>
-            <tr>
-              <th>Key</th>
-              <th>Value</th>
-            </tr>
-            <tr>
-              <td>UUID</td>
-              <td>{{ prod_list.instance_id }}</td>
-            </tr>
-            <tr>
-              <td>datacenter</td>
-              <td>{{ prod_list.dc }}</td>
-            </tr>
-            <tr>
-              <td>IP address</td>
-              <td>{{ prod_list.addr }}</td>
-            </tr>
-          </table>
+        <h4 class="spaced-item">Instance</h4>
+          Result from instance <font color="blue">{{ prod_list.instance_id }}</font>
 
         <h4 class="spaced-item">Configuration</h4>
           <table>
