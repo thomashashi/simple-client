@@ -1,85 +1,100 @@
 <html>
-    <head>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                padding: 1 5 1 5px;
-            }
-        </style>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-      
-        <h1 style="padding-bottom: 10px;">Dual API Web Interface</h1>
-      
-    </head>
-      
-    <body style="background-color: #e0e0e0; padding: 20 40 40 40px;">
-        <p>
-        This is a simple client that calls two different API services using connections facilitated by Consul
-        </p>
 
-        <h4>Listings:</h3>
-        
-            {% if listings_list %}
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Reserve</th>
-                        <th>Current Bid</th>
-                    </tr>
-                {% for listing in listings_list %}
-                    <tr>
-                        <td>{{ listing.listing_id }}</td>
-                        <td>{{ listing.name }}</td>
-                        <td>{{ listing.reserve }}</td>
-                        <td>{{ listing.current_bid }}</td>
-                    </tr>
-                {% endfor %}
-                </table>
-                {% else %}
-                    <font color="red">There was a problem calling the Listing API...</font>
-            {% endif %}
+<head>
+  <meta charset="utf-8">
+  <title>Consul Connect Demo</title>
 
-        <h4 style="padding-top: 20px;">Products:</h3>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+          integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" type="text/css" href="static/styles.css" />
 
-        {% if is_connect == "1" %}<b>Secured with Consul Connect</b>{% endif %}
+  <div class="main-title">
+    <h1>Consul Connect Demo - Web Client</h1>
+  </div>
 
-            {% if prod_list %}
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Cost</th>
-                    </tr>
-                {% for prod in prod_list.res %}
-                    <tr>
-                        <td>{{ prod.inv_id }}</td>
-                        <td>{{ prod.name }}</td>
-                        <td>{{ prod.cost }}</td>
-                    </tr>
-                {% endfor %}
-                </table>
+</head>
 
-        <h5 style="padding-top: 10px;">Instance</h4>
-                Result from instance <font color="blue">{{ prod_list.instance_id }}</font>
+<body id="content">
 
-        <h5 style="padding-top: 5px;">Configuration</h4>
-                <table>
-                        <tr>
-                                <th>Key</th>
-                                <th>Value</th>
-                        </tr>
-                        {% for key, value in prod_list.conf.items() %}
-                                <tr>
-                                        <td>{{ key }}</td>
-                                        <td>{{ value }}</td>
-                                </tr>
-                        {% endfor %}
-                </table>
-            {% else %}
-                <font color="red">There was an error calling Product API...</font>
-            {% endif %}
+  <table class="api-table">
+    <tr>
 
-    </body>
+      <td class="api-column">
+        <h3>Listing API</h3>
+
+          {% if listings_list %}
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Reserve</th>
+              <th>Current Bid</th>
+            </tr>
+            {% for listing in listings_list %}
+            <tr>
+              <td>{{ listing.listing_id }}</td>
+              <td>{{ listing.name }}</td>
+              <td>{{ listing.reserve }}</td>
+              <td>{{ listing.current_bid }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          {% else %}
+          <p>
+            <font color="red">There was a problem calling the Listing API...</font>
+          </p>
+          {% endif %}
+
+      </td>
+
+      <td class="api-column">
+        <h3>Product API</h3>
+
+          {% if prod_list %}
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Cost</th>
+            </tr>
+            {% for prod in prod_list.res %}
+            <tr>
+              <td>{{ prod.inv_id }}</td>
+              <td>{{ prod.name }}</td>
+              <td>{{ prod.cost }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+
+        <h4 class="spaced-item">Instance</h4>
+          Result from instance <font color="blue">{{ prod_list.instance_id }}</font>
+
+        <h4 class="spaced-item">Configuration</h4>
+          <table>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+            {% for key, value in prod_list.conf.items() %}
+            <tr>
+              <td>{{ key }}</td>
+              <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          {% else %}
+          <p>
+            <font color="red">There was an error calling Product API...</font>
+          </p>
+          {% endif %}
+      </td>
+
+    </tr>
+  </table>
+</body>
+
 </html>
